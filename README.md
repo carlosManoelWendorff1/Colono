@@ -1,9 +1,9 @@
 # Colono - Plataforma de Conexão entre Produtores Agrícolas e Consumidores
 
-**Autor:** Carlos Manoel Wendorff
-**Instituição:** Católica de Santa Catarina, Jaraguá do Sul
-**Curso:** Engenharia de Software – 7ª fase
-**Data:** Maio de 2025 (Ajuste conforme a data real)
+- **Autor:** Carlos Manoel Wendorff
+- **Instituição:** Católica de Santa Catarina, Jaraguá do Sul
+- **Curso:** Engenharia de Software – 7ª fase
+- **Data:** Maio de 2025 
 
 ## Sobre o Projeto
 
@@ -59,4 +59,3 @@ Os seguintes diagramas UML foram criados para modelar e documentar diferentes as
 * **Banco de Dados:** Relacional em nuvem (PostgreSQL ou MySQL).
 * **Comunicação:** Integração com APIs de WhatsApp ou Telegram.
 
-## Como Contribuir ou Executar (Exemplo)
