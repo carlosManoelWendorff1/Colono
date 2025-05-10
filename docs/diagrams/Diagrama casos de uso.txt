@@ -1,0 +1,102 @@
+@startuml
+title Diagrama de Casos de Uso - Plataforma Agrícola
+
+left to right direction
+
+actor Produtor
+actor Consumidor
+
+rectangle "Sistema da Plataforma Agrícola" {
+  usecase "Manter Cadastro de Produtos" as UC_ManterProdutos
+  note right of UC_ManterProdutos
+    Permite ao produtor inserir e atualizar
+    informações de produção (cultivos, plantios,
+    colheitas), estoque, preços e disponibilidade.
+    (Requisito: Painel de gestão simplificado,
+    Gestão da propriedade)
+  end note
+  Produtor -- UC_ManterProdutos
+
+  usecase "Gerenciar Perfil da Propriedade" as UC_GerenciarPerfil
+  note right of UC_GerenciarPerfil
+    Cadastro da história do produtor,
+    modo de produção, fotos e
+    práticas sustentáveis.
+    (Requisito: História e valorização do produtor)
+  end note
+  Produtor -- UC_GerenciarPerfil
+
+  usecase "Registrar Venda Realizada" as UC_RegistrarVenda
+  note right of UC_RegistrarVenda
+    Produtor registra as vendas
+    para controle e geração de relatórios.
+    (Requisito: Gestão da propriedade)
+  end note
+  Produtor -- UC_RegistrarVenda
+
+  usecase "Consultar Relatórios de Desempenho" as UC_ConsultarRelatorios
+  note right of UC_ConsultarRelatorios
+    Visualizar vendas, principais clientes,
+    produtos mais vendidos, períodos de maior procura.
+    (Requisito: Relatórios simples)
+  end note
+  Produtor -- UC_ConsultarRelatorios
+
+  usecase "Receber Notificações e Alertas" as UC_ReceberNotificacoes
+  note left of UC_ReceberNotificacoes
+    Avisos sobre datas de colheita,
+    reposição de estoque, pendências.
+    (Requisito: Notificações e alertas)
+  end note
+  Produtor -- UC_ReceberNotificacoes
+
+
+  usecase "Buscar Produtos no Marketplace" as UC_BuscarProdutos
+  note left of UC_BuscarProdutos
+    Consumidores visualizam produtos
+    disponíveis por região, tipo,
+    disponibilidade e proximidade.
+    (Requisito: Marketplace de produtos, Geolocalização)
+  end note
+  Consumidor -- UC_BuscarProdutos
+
+  usecase "Visualizar Detalhes do Produto e Produtor" as UC_VisualizarDetalhes
+  note left of UC_VisualizarDetalhes
+    Acesso à página do produtor
+    com sua história, fotos, etc.
+    (Requisito: História e valorização do produtor)
+  end note
+  Consumidor -- UC_VisualizarDetalhes
+
+  usecase "Contatar Produtor" as UC_ContatarProdutor
+  note left of UC_ContatarProdutor
+    Comunicação direta via link
+    para WhatsApp ou Telegram.
+    (Requisito: Integração com WhatsApp ou Telegram)
+  end note
+  Consumidor -- UC_ContatarProdutor
+
+  'Funcionalidades do sistema que suportam os casos de uso
+  usecase "Sistema Envia Notificações" as SYS_EnviaNotificacoes
+  UC_ReceberNotificacoes <.. SYS_EnviaNotificacoes : <<extend>>
+  note on link
+   O sistema automaticamente
+   envia alertas ao produtor.
+  end note
+
+  usecase "Sistema Aplica Filtro de Geolocalização" as SYS_Geolocalizacao
+  UC_BuscarProdutos ..> SYS_Geolocalizacao : <<include>>
+  note on link
+   O sistema utiliza a geolocalização
+   para exibir produtores próximos.
+  end note
+
+  usecase "Sistema Facilita Contato via Mensageria" as SYS_Mensageria
+  UC_ContatarProdutor ..> SYS_Mensageria : <<include>>
+  note on link
+   O sistema fornece o link
+   para a comunicação direta.
+  end note
+}
+
+@enduml

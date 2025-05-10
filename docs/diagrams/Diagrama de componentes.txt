@@ -1,0 +1,47 @@
+@startuml
+title Diagrama de Componentes - Plataforma Agrícola
+
+package "Plataforma Agrícola (Híbrida Web/Mobile)" {
+  [Frontend (Web/Mobile Híbrido)] as Frontend #APPLICATION
+  note bottom of Frontend
+    Desenvolvido com React Native ou Flutter.
+    Interfaces:
+    - Painel de Gestão (Produtor)
+    - Marketplace Público (Consumidor)
+    (Acesso celular/computador, offline limitado)
+  end note
+
+  [Backend (API REST)] as Backend #APPLICATION
+  note bottom of Backend
+    Desenvolvido com Node.js ou Spring Boot.
+    Fornece APIs REST para:
+    - Gestão interna
+    - Marketplace público
+  end note
+
+  [Banco de Dados (Nuvem)] as Database
+  note bottom of Database
+    PostgreSQL ou MySQL.
+    Armazena dados de:
+    - Produtores, Produtos
+    - Vendas, Clientes
+  end note
+
+  [Módulo de Integração de Mensageria] as MessagingIntegration #APPLICATION
+  note bottom of MessagingIntegration
+    APIs de WhatsApp ou Telegram
+    para comunicação direta.
+  end note
+}
+
+actor Produtor
+actor Consumidor
+
+Produtor -up-> Frontend : "Interage com\nPainel de Gestão"
+Consumidor -up-> Frontend : "Interage com\nMarketplace Público"
+
+Frontend -- Backend : "Consome API REST"
+Backend -- Database : "Persiste/Recupera Dados"
+Backend -- MessagingIntegration : "Utiliza APIs\nde Mensageria"
+
+@enduml

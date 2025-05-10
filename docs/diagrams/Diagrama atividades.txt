@@ -1,0 +1,59 @@
+@startuml
+title Diagrama de Atividades - Exemplo de Operação
+
+|Produtor (João)|
+start
+:Acessa plataforma pelo celular;
+:Cadastra produção e disponibilidade:
+  - 50 pés de alface (colheita em 5 dias)
+  - 80 dúzias de ovos (entrega imediata);
+
+|Plataforma Agrícola (Sistema)|
+:Armazena dados dos produtos de João;
+:Disponibiliza produtos no marketplace;
+
+|Consumidor da Cidade|
+:Acessa marketplace;
+:Busca por "ovos caipiras"
+em um raio de 30 km;
+
+|Plataforma Agrícola (Sistema)|
+:Apresenta anúncio de João
+(com base na busca e geolocalização);
+
+|Consumidor da Cidade|
+:Visualiza página de João
+(fotos da propriedade, história, etc.);
+:Clica no link para WhatsApp
+disponibilizado pela plataforma;
+
+|Plataforma Agrícola (Sistema)|
+:Redireciona para WhatsApp
+(facilitando contato direto com João);
+
+|Interação Direta Produtor-Consumidor|
+:João e Consumidor combinam
+entrega e pagamento via WhatsApp;
+
+|Produtor (João)|
+:Após a venda, acessa o painel de controle;
+:Registra a venda na plataforma;
+
+|Plataforma Agrícola (Sistema)|
+:Atualiza dados de venda de João;
+:Ao final do mês,
+gera automaticamente um relatório para João:
+  - Gráfico simples de vendas totais
+  - Principais produtos
+  - Receitas;
+:Envia notificação para João:
+"Em 2 dias será a melhor época
+para colher sua próxima
+plantação de alface";
+
+|Produtor (João)|
+:Recebe e visualiza relatório;
+:Recebe notificação de colheita;
+stop
+
+@enduml
