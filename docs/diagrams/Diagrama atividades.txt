@@ -1,33 +1,40 @@
 @startuml
-title Diagrama de Atividades - Exemplo de Operação
+title Diagrama de Atividades - Exemplo de Operação Aprimorado
 
 |Produtor (João)|
 start
 :Acessa plataforma pelo celular;
-:Cadastra produção e disponibilidade:
-  - 50 pés de alface (colheita em 5 dias)
-  - 80 dúzias de ovos (entrega imediata);
+:Cadastra produção e disponibilidade;
+:Define preços regionais para seus produtos;
+note right
+Ex: Ovos a R$15/dúzia (Jaraguá do Sul)
+e R$16.50/dúzia (Joinville).
+end note
 
 |Plataforma Agrícola (Sistema)|
-:Armazena dados dos produtos de João;
+:Armazena dados dos produtos e preços regionais de João;
 :Disponibiliza produtos no marketplace;
 
 |Consumidor da Cidade|
 :Acessa marketplace;
-:Busca por "ovos caipiras"
-em um raio de 30 km;
+:Busca por "ovos caipiras";
 
 |Plataforma Agrícola (Sistema)|
-:Apresenta anúncio de João
-(com base na busca e geolocalização);
+:Identifica localização do consumidor (ex: Joinville);
+:Apresenta anúncio de João com preço regionalizado
+(baseado na busca, geolocalização e preços definidos);
+note right
+Ex: Mostra ovos de João a R$16.50/dúzia.
+end note
 
 |Consumidor da Cidade|
 :Visualiza página de João
 (fotos da propriedade, história, etc.);
-:Clica no link para WhatsApp
-disponibilizado pela plataforma;
+:Demonstra interesse em um produto específico
+e quantidade (ex: 2 dúzias de ovos);
 
 |Plataforma Agrícola (Sistema)|
+:Notifica João sobre o interesse do consumidor;
 :Redireciona para WhatsApp
 (facilitando contato direto com João);
 
@@ -40,20 +47,25 @@ entrega e pagamento via WhatsApp;
 :Registra a venda na plataforma;
 
 |Plataforma Agrícola (Sistema)|
-:Atualiza dados de venda de João;
+:Atualiza dados de venda e estoque de João;
 :Ao final do mês,
-gera automaticamente um relatório para João:
-  - Gráfico simples de vendas totais
-  - Principais produtos
-  - Receitas;
-:Envia notificação para João:
-"Em 2 dias será a melhor época
-para colher sua próxima
-plantação de alface";
+gera automaticamente um relatório de desempenho para João:
+  - Gráfico de vendas totais
+  - Principais produtos
+  - Receitas
+  - Análise de volume de vendas por época;
+note right
+Ex: Vendas de ovos caipiras aumentam
+em 20% durante feriados e fins de semana.
+end note
+:Envia notificação otimizada para João:
+"Em 2 dias será a melhor época para colher
+sua próxima plantação de alface,
+**considerando a previsão de clima**";
 
 |Produtor (João)|
-:Recebe e visualiza relatório;
-:Recebe notificação de colheita;
+:Recebe e visualiza relatório detalhado;
+:Recebe notificação de colheita baseada no clima;
 stop
 
 @enduml
