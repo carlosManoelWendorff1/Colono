@@ -7,96 +7,136 @@ actor Produtor
 actor Consumidor
 
 rectangle "Sistema da Plataforma Agrícola" {
-  usecase "Manter Cadastro de Produtos" as UC_ManterProdutos
-  note right of UC_ManterProdutos
-    Permite ao produtor inserir e atualizar
-    informações de produção (cultivos, plantios,
-    colheitas), estoque, preços e disponibilidade.
-    (Requisito: Painel de gestão simplificado,
-    Gestão da propriedade)
-  end note
-  Produtor -- UC_ManterProdutos
+usecase "Manter Cadastro de Produtos\ne Informações de Plantio" as UC_ManterProdutos
+note right of UC_ManterProdutos
+Permite ao produtor inserir e atualizar
+informações de produção (cultivos, plantios,
+colheitas), estoque, preços, disponibilidade,
+e épocas de plantio/previsão de produção.
+(Requisito: Gestão da propriedade, Épocas de plantio,
+Produção com base no clima e predições)
+end note
+Produtor -- UC_ManterProdutos
 
-  usecase "Gerenciar Perfil da Propriedade" as UC_GerenciarPerfil
-  note right of UC_GerenciarPerfil
-    Cadastro da história do produtor,
-    modo de produção, fotos e
-    práticas sustentáveis.
-    (Requisito: História e valorização do produtor)
-  end note
-  Produtor -- UC_GerenciarPerfil
+usecase "Definir Preços Regionais" as UC_DefinirPrecosRegionais
+note right of UC_DefinirPrecosRegionais
+Permite ao produtor configurar preços
+diferenciados para produtos com base
+na região do consumidor.
+(Requisito: Preços regionais)
+end note
+Produtor -- UC_DefinirPrecosRegionais
 
-  usecase "Registrar Venda Realizada" as UC_RegistrarVenda
-  note right of UC_RegistrarVenda
-    Produtor registra as vendas
-    para controle e geração de relatórios.
-    (Requisito: Gestão da propriedade)
-  end note
-  Produtor -- UC_RegistrarVenda
+usecase "Gerenciar Perfil da Propriedade" as UC_GerenciarPerfil
+note right of UC_GerenciarPerfil
+Cadastro da história do produtor,
+modo de produção, fotos e
+práticas sustentáveis.
+(Requisito: História e valorização do produtor)
+end note
+Produtor -- UC_GerenciarPerfil
 
-  usecase "Consultar Relatórios de Desempenho" as UC_ConsultarRelatorios
-  note right of UC_ConsultarRelatorios
-    Visualizar vendas, principais clientes,
-    produtos mais vendidos, períodos de maior procura.
-    (Requisito: Relatórios simples)
-  end note
-  Produtor -- UC_ConsultarRelatorios
+usecase "Registrar Venda Realizada" as UC_RegistrarVenda
+note right of UC_RegistrarVenda
+Produtor registra as vendas
+para controle e geração de relatórios.
+(Requisito: Gestão da propriedade)
+end note
+Produtor -- UC_RegistrarVenda
 
-  usecase "Receber Notificações e Alertas" as UC_ReceberNotificacoes
-  note left of UC_ReceberNotificacoes
-    Avisos sobre datas de colheita,
-    reposição de estoque, pendências.
-    (Requisito: Notificações e alertas)
-  end note
-  Produtor -- UC_ReceberNotificacoes
+usecase "Consultar Relatórios de Desempenho\ne Análise de Dados" as UC_ConsultarRelatorios
+note right of UC_ConsultarRelatorios
+Visualizar vendas, principais clientes,
+produtos mais vendidos, períodos de maior procura,
+volume de vendas por época e insights da produção.
+(Requisito: Relatórios simples, Análise dos dados para os produtos,
+Volume de vendas por épocas, Produção com base no clima e predições)
+end note
+Produtor -- UC_ConsultarRelatorios
+
+usecase "Receber Notificações e Alertas\nOtimizados" as UC_ReceberNotificacoes
+note left of UC_ReceberNotificacoes
+Avisos sobre datas de colheita,
+reposição de estoque, pendências e
+alertas baseados em predições de clima.
+(Requisito: Notificações e alertas, Produção com base no clima e predições)
+end note
+Produtor -- UC_ReceberNotificacoes
 
 
-  usecase "Buscar Produtos no Marketplace" as UC_BuscarProdutos
-  note left of UC_BuscarProdutos
-    Consumidores visualizam produtos
-    disponíveis por região, tipo,
-    disponibilidade e proximidade.
-    (Requisito: Marketplace de produtos, Geolocalização)
-  end note
-  Consumidor -- UC_BuscarProdutos
+usecase "Buscar Produtos no Marketplace" as UC_BuscarProdutos
+note left of UC_BuscarProdutos
+Consumidores visualizam produtos
+disponíveis por região, tipo,
+disponibilidade e proximidade,
+com visualização de preço regional.
+(Requisito: Marketplace de produtos, Geolocalização, Preços regionais)
+end note
+Consumidor -- UC_BuscarProdutos
 
-  usecase "Visualizar Detalhes do Produto e Produtor" as UC_VisualizarDetalhes
-  note left of UC_VisualizarDetalhes
-    Acesso à página do produtor
-    com sua história, fotos, etc.
-    (Requisito: História e valorização do produtor)
-  end note
-  Consumidor -- UC_VisualizarDetalhes
+usecase "Demonstrar Interesse em Produto Específico" as UC_DemonstrarInteresse
+note left of UC_DemonstrarInteresse
+Consumidor indica interesse em
+um produto e quantidade desejada.
+(Requisito: Interesse em 1 produto, example quero 1 duzia de anos)
+end note
+Consumidor -- UC_DemonstrarInteresse
 
-  usecase "Contatar Produtor" as UC_ContatarProdutor
-  note left of UC_ContatarProdutor
-    Comunicação direta via link
-    para WhatsApp ou Telegram.
-    (Requisito: Integração com WhatsApp ou Telegram)
-  end note
-  Consumidor -- UC_ContatarProdutor
+usecase "Visualizar Detalhes do Produto e Produtor" as UC_VisualizarDetalhes
+note left of UC_VisualizarDetalhes
+Acesso à página do produtor
+com sua história, fotos, etc.
+(Requisito: História e valorização do produtor)
+end note
+Consumidor -- UC_VisualizarDetalhes
 
-  'Funcionalidades do sistema que suportam os casos de uso
-  usecase "Sistema Envia Notificações" as SYS_EnviaNotificacoes
-  UC_ReceberNotificacoes <.. SYS_EnviaNotificacoes : <<extend>>
-  note on link
-   O sistema automaticamente
-   envia alertas ao produtor.
-  end note
+usecase "Contatar Produtor" as UC_ContatarProdutor
+note left of UC_ContatarProdutor
+Comunicação direta via link
+para WhatsApp ou Telegram.
+(Requisito: Integração com Mensageria)
+end note
+Consumidor -- UC_ContatarProdutor
 
-  usecase "Sistema Aplica Filtro de Geolocalização" as SYS_Geolocalizacao
-  UC_BuscarProdutos ..> SYS_Geolocalizacao : <<include>>
-  note on link
-   O sistema utiliza a geolocalização
-   para exibir produtores próximos.
-  end note
+'Funcionalidades do sistema que suportam os casos de uso
+usecase "Sistema Envia Notificações Otimizadas" as SYS_EnviaNotificacoes
+UC_ReceberNotificacoes <.. SYS_EnviaNotificacoes : <<extend>>
+note on link
+O sistema automaticamente
+envia alertas ao produtor,
+incluindo base em clima.
+end note
 
-  usecase "Sistema Facilita Contato via Mensageria" as SYS_Mensageria
-  UC_ContatarProdutor ..> SYS_Mensageria : <<include>>
-  note on link
-   O sistema fornece o link
-   para a comunicação direta.
-  end note
+usecase "Sistema Aplica Filtro de Geolocalização" as SYS_Geolocalizacao
+UC_BuscarProdutos ..> SYS_Geolocalizacao : <<include>>
+note on link
+O sistema utiliza a geolocalização
+para exibir produtores próximos.
+end note
+
+usecase "Sistema Facilita Contato via Mensageria" as SYS_Mensageria
+UC_ContatarProdutor ..> SYS_Mensageria : <<include>>
+note on link
+O sistema fornece o link
+para a comunicação direta.
+end note
+
+usecase "Sistema Exibe Preços Regionais" as SYS_PrecosRegionais
+UC_BuscarProdutos ..> SYS_PrecosRegionais : <<include>>
+UC_VisualizarDetalhes ..> SYS_PrecosRegionais : <<include>>
+note on link
+O sistema calcula e exibe
+o preço do produto baseado
+na região do consumidor.
+end note
+
+usecase "Sistema Processa Análise de Dados" as SYS_AnaliseDados
+UC_ConsultarRelatorios ..> SYS_AnaliseDados : <<include>>
+note on link
+O sistema coleta e processa dados
+de vendas e produção para relatórios
+e insights.
+end note
 }
 
 @enduml
