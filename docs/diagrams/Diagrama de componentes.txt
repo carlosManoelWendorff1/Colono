@@ -1,37 +1,57 @@
 @startuml
-title Diagrama de Componentes - Plataforma Agrícola
+title Diagrama de Componentes - Colonos
 
 package "Plataforma Agrícola (Híbrida Web/Mobile)" {
-  [Frontend (Web/Mobile Híbrido)] as Frontend #APPLICATION
-  note bottom of Frontend
-    Desenvolvido com React Native ou Flutter.
-    Interfaces:
-    - Painel de Gestão (Produtor)
-    - Marketplace Público (Consumidor)
-    (Acesso celular/computador, offline limitado)
-  end note
+[Frontend (Web/Mobile Híbrido)] as Frontend #APPLICATION
+note bottom of Frontend
+Desenvolvido com React Native ou Flutter.
+Interfaces:
+- Painel de Gestão (Produtor)
+- Marketplace Público (Consumidor)
+(Acesso celular/computador, offline limitado)
+Exibição de preços regionais.
+Interface para demonstração de interesse em produtos.
+end note
 
-  [Backend (API REST)] as Backend #APPLICATION
-  note bottom of Backend
-    Desenvolvido com Node.js ou Spring Boot.
-    Fornece APIs REST para:
-    - Gestão interna
-    - Marketplace público
-  end note
+[Backend (API REST)] as Backend #APPLICATION
+note bottom of Backend
+Desenvolvido com Node.js ou Spring Boot.
+Fornece APIs REST para:
+- Gestão interna (cadastro de produtos, épocas de plantio)
+- Marketplace público (busca, exibição de preços regionais)
+- Lógica de preços regionais e análise de dados
+- Processamento de dados para predições de clima (notificações)
+- Gestão de interesse em produtos.
+end note
 
-  [Banco de Dados (Nuvem)] as Database
-  note bottom of Database
-    PostgreSQL ou MySQL.
-    Armazena dados de:
-    - Produtores, Produtos
-    - Vendas, Clientes
-  end note
+[Banco de Dados (Nuvem)] as Database
+note bottom of Database
+PostgreSQL ou MySQL.
+Armazena dados de:
+- Produtores, Produtos, Vendas, Clientes
+- Dados para análise de desempenho e clima
+- Configurações de preços regionais
+end note
 
-  [Módulo de Integração de Mensageria] as MessagingIntegration #APPLICATION
-  note bottom of MessagingIntegration
-    APIs de WhatsApp ou Telegram
-    para comunicação direta.
-  end note
+[Módulo de Integração de Mensageria] as MessagingIntegration #APPLICATION
+note bottom of MessagingIntegration
+APIs de WhatsApp ou Telegram
+para comunicação direta.
+end note
+
+[Módulo de Análise e Relatórios] as AnalyticsModule #APPLICATION
+note bottom of AnalyticsModule
+Responsável por processar dados de vendas,
+produção e clima para gerar insights e relatórios
+(volume de vendas por época, desempenho).
+end note
+
+[Módulo de Predições Climáticas (Opcional)] as WeatherPredictionModule #APPLICATION
+note bottom of WeatherPredictionModule
+Integração com APIs externas de dados
+meteorológicos para predições de clima,
+auxiliando nas notificações de colheita.
+end note
 }
 
 actor Produtor
@@ -43,5 +63,9 @@ Consumidor -up-> Frontend : "Interage com\nMarketplace Público"
 Frontend -- Backend : "Consome API REST"
 Backend -- Database : "Persiste/Recupera Dados"
 Backend -- MessagingIntegration : "Utiliza APIs\nde Mensageria"
+Backend -- AnalyticsModule : "Solicita Análises"
+Backend -- WeatherPredictionModule : "Consulta Predições Climáticas"
 
+AnalyticsModule -- Database : "Acessa Dados para Análise"
+WeatherPredictionModule -- Backend : "Fornece Predições"
 @enduml
