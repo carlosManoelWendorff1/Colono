@@ -1,0 +1,162 @@
+@startuml DiagramaClasses_Colonos
+
+' Classes principais
+class Produtor {
+  + id: Long
+  + nome: String
+  + email: String
+  + senha: String
+  + telefone: String
+  + endereco: String
+  + localizacao: GeoPoint
+  + historia: String
+  + praticasSustentaveis: String
+  + fotoPerfil: String
+  + produtos: List<Produto>
+  + vendas: List<Venda>
+  + notificacoes: List<Notificacao>
+  --
+  + cadastrarProduto()
+  + atualizarDisponibilidade()
+  + visualizarRelatorio()
+}
+
+class Consumidor {
+  + id: Long
+  + nome: String
+  + email: String
+  + senha: String
+  + telefone: String
+  + endereco: String
+  + localizacao: GeoPoint
+  + interesses: List<Interesse>
+  + compras: List<Venda>
+  --
+  + buscarProdutos()
+  + demonstrarInteresse()
+  + contatarProdutor()
+}
+
+class Produto {
+  + id: Long
+  + nome: String
+  + descricao: String
+  + categoria: String
+  + unidadeMedida: String
+  + foto: String
+  + metodoProducao: String
+  + produtor: Produtor
+  + variacoesPreco: List<VariacaoPreco>
+  + disponibilidades: List<Disponibilidade>
+  --
+  + calcularPrecoRegional()
+}
+
+class VariacaoPreco {
+  + id: Long
+  + regiao: String
+  + preco: Double
+  + produto: Produto
+}
+
+class Disponibilidade {
+  + id: Long
+  + quantidade: Integer
+  + dataColheita: Date
+  + status: Enum
+  + produto: Produto
+}
+
+class Interesse {
+  + id: Long
+  + quantidade: Integer
+  + data: Date
+  + status: Enum
+  + consumidor: Consumidor
+  + produto: Produto
+}
+
+class Venda {
+  + id: Long
+  + quantidade: Integer
+  + precoUnitario: Double
+  + data: Date
+  + status: Enum
+  + produtor: Produtor
+  + consumidor: Consumidor
+  + produto: Produto
+}
+
+class Relatorio {
+  + id: Long
+  + periodo: String
+  + totalVendas: Double
+  + produtosMaisVendidos: Map<String, Integer>
+  + tendenciasSazonais: String
+  + produtor: Produtor
+  --
+  + gerarRelatorio()
+}
+
+class Notificacao {
+  + id: Long
+  + tipo: Enum
+  + mensagem: String
+  + data: Date
+  + lida: Boolean
+  + produtor: Produtor
+}
+
+class MarketplaceController {
+  + buscarProdutosPorFiltro()
+  + exibirDetalhesProduto()
+  + processarInteresse()
+}
+
+class ProdutorController {
+  + cadastrarProduto()
+  + atualizarDisponibilidade()
+  + visualizarRelatorios()
+}
+
+class NotificacaoService {
+  + enviarNotificacaoColheita()
+  + enviarAlertaClimatico()
+  + marcarComoLida()
+}
+
+' Relacionamentos
+Produtor "1" *-- "0..*" Produto
+Produtor "1" *-- "0..*" Venda
+Produtor "1" *-- "0..*" Notificacao
+Produtor "1" *-- "0..*" Relatorio
+
+Consumidor "1" *-- "0..*" Interesse
+Consumidor "1" *-- "0..*" Venda
+
+Produto "1" *-- "0..*" VariacaoPreco
+Produto "1" *-- "0..*" Disponibilidade
+Produto "1" *-- "0..*" Interesse
+Produto "1" *-- "0..*" Venda
+
+' Agregações
+MarketplaceController o-- Produto
+MarketplaceController o-- Consumidor
+ProdutorController o-- Produtor
+NotificacaoService o-- Produtor
+NotificacaoService o-- Notificacao
+
+' Dependências
+MarketplaceController ..> GeolocalizacaoService
+NotificacaoService ..> ClimaAPI
+
+' Interfaces
+interface GeolocalizacaoService {
+  + calcularDistancia()
+}
+
+interface ClimaAPI {
+  + obterPrevisao()
+}
+
+@enduml

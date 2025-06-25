@@ -1,0 +1,130 @@
+@startuml Diagrama_ER_Colonos
+
+' Entidades principais
+entity Produtor {
+  + id_produtor [PK]
+  --
+  nome
+  email
+  senha_hash
+  telefone
+  endereco
+  localizacao_geografica
+  historia
+  praticas_sustentaveis
+  foto_perfil
+}
+
+entity Consumidor {
+  + id_consumidor [PK]
+  --
+  nome
+  email
+  senha_hash
+  telefone
+  endereco
+  localizacao_geografica
+}
+
+entity Produto {
+  + id_produto [PK]
+  --
+  # id_produtor [FK]
+  nome
+  descricao
+  categoria
+  unidade_medida
+  foto_produto
+  metodo_producao
+}
+
+entity VariacaoPreco {
+  + id_variacao [PK]
+  --
+  # id_produto [FK]
+  regiao
+  preco
+}
+
+entity Disponibilidade {
+  + id_disponibilidade [PK]
+  --
+  # id_produto [FK]
+  quantidade
+  data_colheita
+  status
+}
+
+entity InteresseConsumidor {
+  + id_interesse [PK]
+  --
+  # id_consumidor [FK]
+  # id_produto [FK]
+  quantidade_desejada
+  data_interesse
+  status
+}
+
+entity Venda {
+  + id_venda [PK]
+  --
+  # id_produtor [FK]
+  # id_consumidor [FK]
+  # id_produto [FK]
+  quantidade
+  preco_unitario
+  data_venda
+  status
+}
+
+entity Relatorio {
+  + id_relatorio [PK]
+  --
+  # id_produtor [FK]
+  periodo
+  total_vendas
+  produtos_mais_vendidos
+  tendencias_sazonais
+}
+
+entity Notificacao {
+  + id_notificacao [PK]
+  --
+  # id_produtor [FK]
+  tipo
+  mensagem
+  data_notificacao
+  lida
+}
+
+' Relacionamentos
+Produtor ||--o{ Produto : "cadastra"
+Produtor ||--o{ Venda : "realiza"
+Produtor ||--o{ Relatorio : "possui"
+Produtor ||--o{ Notificacao : "recebe"
+
+Consumidor ||--o{ InteresseConsumidor : "demonstra"
+Consumidor ||--o{ Venda : "efetua"
+
+Produto ||--o{ VariacaoPreco : "possui"
+Produto ||--o{ Disponibilidade : "tem"
+Produto ||--o{ InteresseConsumidor : "recebe_interesse"
+Produto ||--o{ Venda : "vendido_como"
+
+' Notas explicativas
+note top of VariacaoPreco
+  Tabela para armazenar preços
+  regionalizados conforme RF02
+end note
+
+note right of Disponibilidade
+  Controla estoque e datas de
+  colheita (RF01 e RF05)
+end note
+
+note left of Notificacao
+  Alertas de colheita, estoque
+  e clima (RF05)
+end note
+
+@enduml
