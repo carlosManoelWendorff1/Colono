@@ -7,7 +7,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (
     <ShadInput
       ref={ref}
-      className={`${className} active:ring-primary-500`}
+      className={`${className} active:ring-primary-500 focus:ring-primary-500 focus-visible:ring-primary-200`}
       {...props}
     />
   )

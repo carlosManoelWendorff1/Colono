@@ -27,7 +27,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
-        type="email"
+        type="text"
         placeholder="Email"
         className="w-full mb-3 p-2 border rounded"
         {...register("email", { required: "Email obrigatório" })}
@@ -44,11 +44,7 @@ const LoginForm = () => {
           {errors.email?.message || errors.password?.message}
         </FormError>
       )}
-      <Button
-        variant={"default"}
-        type="submit"
-        className="bg-primary-700 hover:bg-primary-800 text-white w-full"
-      >
+      <Button variant={"default"} type="submit" className=" w-full">
         Entrar
       </Button>
     </form>

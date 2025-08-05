@@ -4,7 +4,7 @@ import { Card } from "../ui/card";
 import { LoginForm } from "../forms/LoginForm";
 import { ForgotPassword } from "./ForgotPassword";
 import { Button } from "../ui/button";
-import { RegisterForm } from "./Register";
+import { Register } from "./Register";
 
 const LoginCard = () => {
   return (
@@ -14,7 +14,7 @@ const LoginCard = () => {
       </div>
       <div className="w-full px-10 my-2 gap-2 flex-col p-2 justify-center h-1/3">
         <LoginForm />
-        <RegisterForm />
+        <Register />
         <ForgotPassword
           onclick={() => console.log("Forgot password clicked")}
         />
