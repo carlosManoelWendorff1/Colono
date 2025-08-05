@@ -1,0 +1,85 @@
+/* colors.css */
+
+/* Verde Principal */
+.primary {
+  --color-50: #e6f5e6;
+  --color-100: #b3d9b3;
+  --color-200: #80bd80;
+  --color-300: #4d9f4d;
+  --color-400: #268626;
+  --color-500: #00b207; /* cor base */
+  --color-600: #009600;
+  --color-700: #007700;
+  --color-800: #005800;
+  --color-900: #003a00;
+}
+
+/* Verde Soft (cor suave) */
+.soft-primary {
+  --color-50: #e9f7ec;
+  --color-100: #c6e7c9;
+  --color-200: #a2d8a4;
+  --color-300: #7fca7f;
+  --color-400: #5db65d;
+  --color-500: #84d187; /* cor base suave */
+  --color-600: #6bb26f;
+  --color-700: #529e58;
+  --color-800: #3b7b3f;
+  --color-900: #265426;
+}
+
+/* Verde Hard (escuro) */
+.hard-primary {
+  --color-50: #d3e6d3;
+  --color-100: #a3be9d;
+  --color-200: #74976d;
+  --color-300: #4c6a48;
+  --color-400: #315025;
+  --color-500: #2c742f; /* cor base hard */
+  --color-600: #245b26;
+  --color-700: #1c411a;
+  --color-800: #14280e;
+  --color-900: #0c1303;
+}
+
+/* Warning (alarme) */
+.warning {
+  --color-50: #fff4e1;
+  --color-100: #ffe0a8;
+  --color-200: #ffc96d;
+  --color-300: #ffb632;
+  --color-400: #ff9e00;
+  --color-500: #ff8a00; /* cor base warning */
+  --color-600: #cc6b00;
+  --color-700: #994d00;
+  --color-800: #663200;
+  --color-900: #331800;
+}
+
+/* Danger (perigo) */
+.danger {
+  --color-50: #fde7e6;
+  --color-100: #f9b3b1;
+  --color-200: #f38075;
+  --color-300: #f04d39;
+  --color-400: #ea2316;
+  --color-500: #ea4b48; /* cor base danger */
+  --color-600: #b73a38;
+  --color-700: #852927;
+  --color-800: #561917;
+  --color-900: #2b0c0b;
+}
+
+/* Gray (tons neutros) */
+.gray {
+  --color-50: #fafafa;
+  --color-100: #f5f5f5;
+  --color-200: #e0e0e0;
+  --color-300: #bfbfbf;
+  --color-400: #999999;
+  --color-500: #737373;
+  --color-600: #5b5b5b;
+  --color-700: #444444;
+  --color-800: #2d2d2d;
+  --color-900: #171717;
+}
